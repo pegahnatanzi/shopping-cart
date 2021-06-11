@@ -59,8 +59,8 @@ while True:
 print("Fleeb's Market")
 print("PHONE NUMBER: 310-818-2652")
 print("26 Fleeb Street, FleebsVille, CA 90210")
-print("CHECKOUT TIME:" + checkout_start_date_time.strftime("%Y-%m-%d %I:%M %p")))
-print("___________________________________")
+print("CHECKOUT TIME: " + checkout_start_date_time.strftime("%Y-%m-%d %I:%M %p"))
+print("----------------------------------")
 
 
 # Given function to properly format prices:
@@ -98,8 +98,9 @@ total_price = subtotal_price + tax
     # The total amount owed, formatted as US dollars and cents (e.g. $21.17), calculated by adding together the amount of tax owed plus the total cost of all shopping cart items
     # A friendly message thanking the customer and/or encouraging the customer to shop again
 
+print("----------------------------------")
 print("SUBTOTAL: " + to_usd(subtotal_price))
 print("TAX: " + to_usd(tax))
 print("TOTAL: " + to_usd(total_price))
-print("___________________________________")
+print("----------------------------------")
 print("Thanks for shopping at Fleeb's Market! See you next time!")
