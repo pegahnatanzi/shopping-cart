@@ -3,13 +3,6 @@
 [Project Description]
 (https://github.com/prof-rossetti/intro-to-python/blob/main/projects/shopping-cart/README.md#repo-setup)
 
-## Installation
-
-Clone or download from [GitHub source](https://github.com/s2t2/shopping-cart-screencast), then navigate into the pject repository
-
-```sh
-cd shopping-cart-screencast
-```
 
 ## Setup
 Create and activate a virtual env:
