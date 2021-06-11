@@ -1,7 +1,6 @@
 # Shopping Cart Project
 
-[Project Description]
-(https://github.com/prof-rossetti/intro-to-python/blob/main/projects/shopping-cart/README.md#repo-setup)
+[Project Description](https://github.com/prof-rossetti/intro-to-python/blob/main/projects/shopping-cart/README.md#repo-setup)
 
 
 ## Setup
