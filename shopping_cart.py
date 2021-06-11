@@ -1,5 +1,7 @@
 # shopping_cart.py
 
+import datetime as date
+
 products = [
     {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
     {"id":2, "name": "All-Seasons Salt", "department": "pantry", "aisle": "spices seasonings", "price": 4.99},
@@ -25,31 +27,43 @@ products = [
 # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
 
-
 # INFO CAPTURE / INPUT: capture product ids until we're done
     # (use infinite while loop)
 
-total_price = 0
+tax_percentage = 0.0875  # note: this is given as NYC tax rate
+
+checkout_start_date_time = date.datetime.now()
+
+subtotal_price = 0
+
 selected_ids = []
 
 
 while True:
     selected_id = input("Please select / scan a valid product id: ")
     if selected_id.upper() == "DONE":
-        break   # this means, if input is DONE, stop the loop
+        break        # this means, if input is DONE, stop the loop
     else:
         selected_ids.append(selected_id)
         # maybe display the selected product's name and price here/now
-    print(selected_id)
-
-print("WE HAVE REACHED THE END OF THE LOOP")
-#print(selected_ids)
 
 
 
 # INFO DISPLAY / OUTPUT: Perform product lookups to determine what the product's name and price are
-#selected_ids = ["1","2","3","2","1"]
 
+# First, we want to print the following info at top of receipt:
+    # A grocery store name of your choice
+    # A grocery store phone number and/or website URL and/or address of choice
+    # The date and time of the beginning of the checkout process, formatted in a human-friendly way (e.g. 2020-02-07 03:54 PM): https://docs.python.org/3/library/datetime.html#strftime-strptime-behavior
+
+print("Fleeb's Market")
+print("PHONE NUMBER: 310-818-2652")
+print("26 Fleeb Street, FleebsVille, CA 90210")
+print("CHECKOUT TIME:" + checkout_start_date_time.strftime("%Y-%m-%d %I:%M %p")))
+print("___________________________________")
+
+
+# Given function to properly format prices:
 def to_usd(my_price):
     """
     Converts a numeric value to usd-formatted string, for printing and display purposes.
@@ -67,9 +81,25 @@ for selected_id in selected_ids:
     matching_products = [p for p in products if str(p["id"]) == str(selected_id)]
     # FYI the result of our list comprehension will be a list!
     matching_product = matching_products[0] # ... so we'll need to access its first item using [0]
-    total_price = total_price + matching_product["price"]
-    print("SELECTED PRODUCT: " + matching_product["name"] + " " + str(matching_product["price"])
+    subtotal_price = subtotal_price + matching_product["price"]
+    print("SELECTED PRODUCT: " + matching_product["name"] + " " + to_usd(matching_product["price"]))
 
 
-# we need to have program add up all of the prices: 
-print("TOTAL PRICE:" + str(total_price))
+# we need to have program add up all of the prices & apply the tax rate: 
+
+tax = subtotal_price * tax_percentage
+
+total_price = subtotal_price + tax
+
+
+# now, display the rest of receipt content:
+    # The total cost of all shopping cart items (i.e. the "subtotal"), formatted as US dollars and cents (e.g. $19.47), calculated as the sum of their prices
+    # The amount of tax owed (e.g. $1.70), calculated by multiplying the total cost by a New York City sales tax rate of 8.75% (for the purposes of this project, groceries are not exempt from sales tax)
+    # The total amount owed, formatted as US dollars and cents (e.g. $21.17), calculated by adding together the amount of tax owed plus the total cost of all shopping cart items
+    # A friendly message thanking the customer and/or encouraging the customer to shop again
+
+print("SUBTOTAL: " + to_usd(subtotal_price))
+print("TAX: " + to_usd(tax))
+print("TOTAL: " + to_usd(total_price))
+print("___________________________________")
+print("Thanks for shopping at Fleeb's Market! See you next time!")
